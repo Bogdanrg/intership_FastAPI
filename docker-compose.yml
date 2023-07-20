@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  parser:
+    build: .
+    container_name: "FastAPI"
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/usr/src/app/
+    env_file:
+      - .env
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    command: mongod --auth
+    env_file:
+      - .env
+    volumes:
+      - mongo_trading:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    ports:
+      - "27017:27017"
+    restart: always
+
+
+volumes:
+  mongo_trading:
+    external: true
