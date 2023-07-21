@@ -13,5 +13,3 @@ RUN pip install -U pipenv \
 COPY entrypoint.sh /usr/src/app/entrypoint.sh
 
 COPY . .
-
-ENTRYPOINT ["bash" , "entrypoint.sh" ]
