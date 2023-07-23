@@ -50,3 +50,4 @@ repos:
               --strict-optional,
               --ignore-missing-imports
           ]
+        additional_dependencies: ['types-requests']
