@@ -12,7 +12,6 @@ class PromotionRepository(BaseRepository):
 
     @classmethod
     async def create_all(cls, promotions: dict) -> int:
-        print(promotions['result'])
         result = await cls.collection.insert_many(
             [promotion for promotion in promotions['result']])
         return len(result.insered_ids)
