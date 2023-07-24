@@ -10,9 +10,9 @@ pydantic = "*"
 python-dotenv = "*"
 motor = "*"
 pre-commit = "*"
-requests = "*"
 pydantic-settings = "*"
 aiokafka = "*"
+httpx = "*"
 
 [dev-packages]
 

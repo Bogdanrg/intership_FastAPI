@@ -1,10 +1,18 @@
 from core.database import db
+from .base import BaseRepository
 
 
-class PromotionRepository:
+class PromotionRepository(BaseRepository):
     collection = db["trading"]
 
     @classmethod
-    async def create(cls, promotion: dict) -> str:
-        new_promotion = await cls.collection.insert_one(promotion)
-        return new_promotion.inserted_id
+    async def update_all(cls, promotions: dict):
+        for promotion in promotions['result']:
+            await cls.collection.update_one({'code': promotion['code']}, {'$set': promotion})
+
+    @classmethod
+    async def create_all(cls, promotions: dict) -> int:
+        print(promotions['result'])
+        result = await cls.collection.insert_many(
+            [promotion for promotion in promotions['result']])
+        return len(result.insered_ids)

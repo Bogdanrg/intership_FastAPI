@@ -12,5 +12,6 @@ async def send_data(data: dict) -> None:
         await producer.send_and_wait(
             app_settings.KAFKA_TOPIC_NAME, json.dumps(data).encode("utf-8")
         )
+        print(data)
     finally:
         await producer.stop()
