@@ -6,13 +6,15 @@ name = "pypi"
 [packages]
 fastapi = "*"
 uvicorn = "*"
-pydantic = "*"
 python-dotenv = "*"
 motor = "*"
 pre-commit = "*"
 pydantic-settings = "*"
 aiokafka = "*"
 httpx = "*"
+celery = "*"
+pydantic = "*"
+redis = "*"
 
 [dev-packages]
 

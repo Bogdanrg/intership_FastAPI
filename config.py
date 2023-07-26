@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     CODES: str = os.getenv("CODES", "")
     KAFKA_TOPIC_NAME: str = os.getenv("KAFKA_TOPIC_NAME", "")
     BOOTSTRAP_SERVER: str = os.getenv("BOOTSTRAP_SERVER", "")
+    CELERY_BROKER_URL: str = os.getenv("CELERY_BROKER_URL", "")
 
 
 app_settings = Settings()

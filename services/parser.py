@@ -10,13 +10,17 @@ async def parse_promotions() -> dict:
     promotions: dict = {"result": []}
     for code in codes:
         async with AsyncClient() as client:
-            response = await client.get(f'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE'
-                                        f'&from_currency'
-                                        f'={code}&to_currency=USD&apikey={API_KEY}')
-            if response.json().get('Realtime Currency Exchange Rate', None):
+            response = await client.get(
+                url=app_settings.ALPHAVANTAGE_URL.format(code=code, apikey=API_KEY)
+            )
+            if response.json().get("Realtime Currency Exchange Rate", None):
                 promotion = {
-                    'code': response.json()['1. From_Currency Code'],
-                    'price': response.json()['8. Bid Price']
+                    "code": response.json()["Realtime Currency Exchange Rate"][
+                        "1. From_Currency Code"
+                    ],
+                    "price": response.json()["Realtime Currency Exchange Rate"][
+                        "8. Bid Price"
+                    ],
                 }
-                promotions['result'].append(promotion)
+                promotions["result"].append(promotion)
     return promotions
