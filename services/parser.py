@@ -15,7 +15,7 @@ async def parse_promotions() -> dict:
             )
             if response.json().get("Realtime Currency Exchange Rate", None):
                 promotion = {
-                    "code": response.json()["Realtime Currency Exchange Rate"][
+                    "name": response.json()["Realtime Currency Exchange Rate"][
                         "1. From_Currency Code"
                     ],
                     "price": response.json()["Realtime Currency Exchange Rate"][

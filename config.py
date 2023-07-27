@@ -21,6 +21,8 @@ class Settings(BaseSettings):
     KAFKA_TOPIC_NAME: str
     BOOTSTRAP_SERVER: str
     CELERY_BROKER_URL: str
+    UVICORN_HOST: str
+    UVICORN_PORT: int
 
     model_config = SettingsConfigDict(env_file=".env")
 
