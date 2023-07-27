@@ -1,4 +1,4 @@
 #!/bin/sh
 echo "Starting"
 
-uvicorn main:app --reload --port 8080 --host 0.0.0.0
+uvicorn main:app --reload --port "UVICORN_PORT" --host "UVICORN_HOST"

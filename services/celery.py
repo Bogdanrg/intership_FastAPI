@@ -21,13 +21,15 @@ app.conf.beat_schedule = {
 
 app.conf.timezone = "UTC"
 
+loop = asyncio.new_event_loop()
+
 
 @app.task(name="run_update_promotions")
 def run_update_promotions() -> None:
-    asyncio.run(update_promotions())
+    loop.run_until_complete(update_promotions())
 
 
 async def update_promotions() -> None:
     promotions = await parse_promotions()
     await send_data(promotions)
-    await PromotionRepository.update_all(promotions)
+    await PromotionRepository.update_one(promotions)

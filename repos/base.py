@@ -6,7 +6,7 @@ T = TypeVar("T")
 
 
 class BaseRepository:
-    collection = db[T]
+    collection: db
 
     @classmethod
     async def create(cls, promotion: dict) -> str:

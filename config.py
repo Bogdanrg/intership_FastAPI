@@ -1,21 +1,28 @@
-import os
-
-from dotenv import load_dotenv
-from pydantic_settings import BaseSettings
-
-load_dotenv()
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    API_KEY: str = os.getenv("API_KEY", "")
-    MONGODB_URL: str = os.getenv("MONGODB_URL", "")
-    MONGO_INITDB_DATABASE: str = os.getenv("MONGO_INITDB_DATABASE", "")
-    APP_TITLE: str = os.getenv("APP_TITLE", "")
-    ALPHAVANTAGE_URL: str = os.getenv("ALPHAVANTAGE_URL", "")
-    CODES: str = os.getenv("CODES", "")
-    KAFKA_TOPIC_NAME: str = os.getenv("KAFKA_TOPIC_NAME", "")
-    BOOTSTRAP_SERVER: str = os.getenv("BOOTSTRAP_SERVER", "")
-    CELERY_BROKER_URL: str = os.getenv("CELERY_BROKER_URL", "")
+    APP_TITLE: str
+    MONGO_INITDB_DATABASE: str
+    MONGO_INITDB_ROOT_USERNAME: str
+    MONGO_INITDB_ROOT_PASSWORD: str
+    MONGODB_URL: str
+    API_KEY: str
+    CODES: str
+    ALPHAVANTAGE_URL: str
+    ZOOKEEPER_CLIENT_PORT: int
+    ZOOKEEPER_TICK_TIME: int
+    KAFKA_BROKER_ID: int
+    KAFKA_ZOOKEEPER_CONNECT: str
+    KAFKA_ADVERTISED_LISTENERS: str
+    KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: str
+    KAFKA_INTER_BROKER_LISTENER_NAME: str
+    KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: int
+    KAFKA_TOPIC_NAME: str
+    BOOTSTRAP_SERVER: str
+    CELERY_BROKER_URL: str
+
+    model_config = SettingsConfigDict(env_file=".env")
 
 
 app_settings = Settings()

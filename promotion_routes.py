@@ -14,6 +14,6 @@ promotion_router = APIRouter(prefix="/api/v1/promotions", tags=["promotions"])
 async def pull_promotions() -> List[PromotionModel]:
     promotions = await parse_promotions()
     await send_data(promotions)
-    await PromotionRepository.create_all(promotions)
+    await PromotionRepository.insert_many(promotions)
     promotions_list = await PromotionRepository.get_all()
     return promotions_list
