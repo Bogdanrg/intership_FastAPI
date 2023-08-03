@@ -31,6 +31,6 @@ def run_update_promotions() -> None:
 
 async def update_promotions() -> None:
     promotions = await parse_promotions()
-    promotions['action'] = 'rate_update'
+    promotions["action"] = "rate_update"
     await send_data(promotions)
     await PromotionRepository.update_one(promotions)

@@ -1,7 +1,8 @@
 import json
-from config import app_settings
 
 from aiokafka import AIOKafkaProducer
+
+from config import app_settings
 
 
 async def send_data(data: dict) -> None:

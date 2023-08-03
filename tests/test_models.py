@@ -1,5 +1,6 @@
 import bson
 import pytest
+
 from repos.promotion import PromotionRepository
 
 
@@ -8,7 +9,7 @@ async def test_create_promotion(promotion_data):
     inserted_id = await PromotionRepository.create(promotion_data)
     document = await PromotionRepository.collection.find_one({"_id": inserted_id})
     assert type(inserted_id) == bson.objectid.ObjectId
-    assert document['name'] == "BTC"
+    assert document["name"] == "BTC"
 
 
 @pytest.mark.asyncio
@@ -30,5 +31,5 @@ async def test_update(new_promotions):
     await PromotionRepository.update_one(new_promotions)
     documents = await PromotionRepository.get_all()
     for document in documents:
-        del document['_id']
+        del document["_id"]
     assert documents == new_promotions["result"]
