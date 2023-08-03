@@ -18,8 +18,8 @@ jobs:
         python-version: '3.11.4'
     - name: Install Dependencies
       run: |
-        apt-get update 
-        apt-get install netcat-traditional -y
+        sudo apt-get update 
+        sudo apt-get install netcat-traditional -y
         pip install -U pipenv 
         pipenv install --system
 
