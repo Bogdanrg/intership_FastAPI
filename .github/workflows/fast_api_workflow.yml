@@ -22,7 +22,9 @@ jobs:
       - name: Run tests
         run: docker-compose exec -T parser pytest
       - name: Run linters
-        run: docker-compose exec -T parser pre-commit
+        run: |
+          git init
+          docker-compose exec -T parser pre-commit
       - name: Stop Containers
         if: always()
         run: docker-compose down
