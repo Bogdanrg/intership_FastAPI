@@ -23,7 +23,7 @@ jobs:
         run: docker-compose exec -T parser pytest
       - name: Install pipenv
         run: |
-            sudo apt install python3
+            sudo apt install python 3.11.4
             pip install pipenv
             pipenv install --system --deploy --ignore-pipfile
       - name: Run linters
