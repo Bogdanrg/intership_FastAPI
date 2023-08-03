@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  testing:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -22,10 +22,6 @@ jobs:
         sudo apt-get install netcat-traditional -y
         pip install -U pipenv 
         pipenv install --system
-
-  testing:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run tests
-        run: |
-          pytest
+    - name: Run tests
+      run: |
+        pytest
