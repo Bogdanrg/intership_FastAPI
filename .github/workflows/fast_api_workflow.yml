@@ -20,9 +20,9 @@ jobs:
           docker volume create mongo_trading
           docker-compose up -d --build
       - name: Run tests
-        run: docker-compose exec -T FastAPI pytest
+        run: docker-compose exec -T parser pytest
       - name: Run linters
-        run: docker-compose exec -T FastAPI pre-commit
+        run: docker-compose exec -T parser pre-commit
       - name: Stop Containers
         if: always()
         run: docker-compose down
