@@ -21,10 +21,14 @@ jobs:
           docker-compose up -d --build
       - name: Run tests
         run: docker-compose exec -T parser pytest
+      - name: Install pipenv
+        run: |
+            pip install pipenv
+            pipenv install --system --deploy --ignore-pipfile
       - name: Run linters
         run: |
-          docker-compose exec -T parser pipenv run pre-commit install
-          docker-compose exec -T parser pipenv run pre-commit run --all-files
+          pipenv run pre-commit install
+          pipenv run pre-commit run --all-files
       - name: Stop Containers
         if: always()
         run: docker-compose down
