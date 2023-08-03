@@ -13,7 +13,7 @@ promotion_router = APIRouter(prefix="/api/v1/promotions", tags=["promotions"])
 @promotion_router.get("/pull", response_model=List[PromotionModel])
 async def pull_promotions() -> Any:
     promotions = await parse_promotions()
-    promotions["action"] = "pull"
+    promotions["action"] = "rate_pull"
     await send_data(promotions)
     await PromotionRepository.insert_many(promotions)
     promotions_list = await PromotionRepository.get_all()
