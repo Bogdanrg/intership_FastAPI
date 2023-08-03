@@ -23,7 +23,7 @@ jobs:
         run: docker-compose exec -T parser pytest
       - name: Run linters
         run: |
-          docker-compose exec -T parser apt update && apt install -y --no-install-recommends git
+          docker-compose exec -T parser sudo apt update && sudo apt install -y --no-install-recommends git
           docker-compose exec -T parser git init
           docker-compose exec -T parser pre-commit
       - name: Stop Containers
