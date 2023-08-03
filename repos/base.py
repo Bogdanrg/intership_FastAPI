@@ -1,8 +1,4 @@
-from typing import TypeVar
-
 from core.database import db
-
-T = TypeVar("T")
 
 
 class BaseRepository:

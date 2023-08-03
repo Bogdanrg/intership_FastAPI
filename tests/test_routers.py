@@ -1,12 +1,11 @@
 import pytest
 from httpx import AsyncClient
-
 from main import app
 
 
-@pytest.mark.anyio
-async def test_root() -> None:
+@pytest.mark.asyncio
+async def test_pull() -> None:
     async with AsyncClient(app=app, base_url="http://127.0.0.1:8080") as ac:
-        response = await ac.get("/")
+        response = await ac.get("/api/v1/promotions/pull")
     assert response.status_code == 200
-    assert response.json() == "2"
+    assert set(response.json()[0].keys()) == {"_id", "name", "price"}

@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Any
 
 from fastapi import APIRouter
 
@@ -11,7 +11,7 @@ promotion_router = APIRouter(prefix="/api/v1/promotions", tags=["promotions"])
 
 
 @promotion_router.get("/pull", response_model=List[PromotionModel])
-async def pull_promotions() -> List[PromotionModel]:
+async def pull_promotions() -> Any:
     promotions = await parse_promotions()
     promotions["property"] = "pull"
     await send_data(promotions)
