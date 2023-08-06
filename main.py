@@ -8,12 +8,12 @@ app = FastAPI(title=app_settings.APP_TITLE)
 
 
 @app.on_event("startup")
-async def startup_event():
+async def startup_event() -> None:
     await producer.start()
 
 
 @app.on_event("shutdown")
-async def shutdown_event():
+async def shutdown_event() -> None:
     await producer.stop()
 
 

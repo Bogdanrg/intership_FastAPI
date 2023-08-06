@@ -1,7 +1,7 @@
 import pytest
 from httpx import AsyncClient
-from config import app_settings
 
+from config import app_settings
 from main import app
 
 

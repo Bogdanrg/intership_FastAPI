@@ -1,12 +1,12 @@
 import asyncio
+
 from celery import Celery
 from celery.schedules import crontab
 
 from config import app_settings
 from repos.promotion import PromotionRepository
 from services.parser import parse_promotions
-from services.producer import send_data
-from services.producer import producer
+from services.producer import producer, send_data
 
 app = Celery(__name__)
 app.conf.broker_url = app_settings.CELERY_BROKER_URL
