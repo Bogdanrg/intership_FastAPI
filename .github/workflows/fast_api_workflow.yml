@@ -2,7 +2,9 @@ name: FastAPI workflow
 
 on:
   push:
-    branches: [ testing ]
+    branches:
+      - master
+      - dev
   pull_request:
     branches: [ master ]
 
