@@ -23,6 +23,7 @@ class Settings(BaseSettings):
     CELERY_BROKER_URL: str
     UVICORN_HOST: str
     UVICORN_PORT: int
+    BASE_URL: str
 
     model_config = SettingsConfigDict(env_file=".env")
 
