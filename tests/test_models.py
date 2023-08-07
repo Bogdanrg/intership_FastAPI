@@ -30,7 +30,6 @@ async def test_insert_many(promotions):
 async def test_update(new_promotions):
     await PromotionRepository.update_one(new_promotions)
     documents = await PromotionRepository.get_all()
-    print(documents)
     for document in documents:
         del document["_id"]
     assert documents == new_promotions["result"]
