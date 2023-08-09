@@ -21,9 +21,12 @@ jobs:
           docker-compose up -d --build
       - name: Run tests
         run: docker-compose exec -T parser pytest
+      - name: Set up Python 3.11.4
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.11.4
       - name: Install pipenv
         run: |
-            sudo apt install python3
             pip install pipenv
             pipenv install --system --deploy --ignore-pipfile
       - name: Run linters
