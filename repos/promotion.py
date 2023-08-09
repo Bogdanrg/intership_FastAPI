@@ -10,7 +10,7 @@ class PromotionRepository(BaseRepository):
     async def update_one(cls, promotions: dict) -> None:
         for promotion in promotions["result"]:
             await cls.collection.update_one(
-                {"code": promotion["code"]}, {"$set": promotion}
+                {"name": promotion["name"]}, {"$set": promotion}
             )
 
     @classmethod

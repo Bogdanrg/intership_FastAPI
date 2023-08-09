@@ -29,7 +29,7 @@ PyObjectId = Annotated[
 
 class PromotionModel(BaseModel):
     id: PyObjectId = Field(alias="_id")
-    code: str
+    name: str
     price: float
 
     model_config = ConfigDict(arbitrary_types_allowed=True)

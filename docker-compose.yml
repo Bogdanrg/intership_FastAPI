@@ -24,6 +24,7 @@ services:
       - .env
     volumes:
       - mongo_trading:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
       - trading
     ports:
@@ -54,7 +55,7 @@ services:
 
   fastapiworker:
     build: .
-    entrypoint: ["bash" , "celery-ep.sh" ]
+    entrypoint: ["bash" , "celery-ep.sh"]
     container_name: 'fastapiworker'
     volumes:
       - .:/usr/src/app/
