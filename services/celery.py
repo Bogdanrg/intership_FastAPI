@@ -6,7 +6,7 @@ from celery.schedules import crontab
 from config import app_settings
 from repos.promotion import PromotionRepository
 from services.parser import parse_promotions
-from services.producer import producer, send_data
+from services.producer import producer
 
 app = Celery(__name__)
 app.conf.broker_url = app_settings.CELERY_BROKER_URL
@@ -21,17 +21,17 @@ app.conf.beat_schedule = {
 
 app.conf.timezone = "UTC"
 
-loop = asyncio.get_event_loop()
-
 
 @app.task(name="run_update_promotions")
 def run_update_promotions() -> None:
+    loop = asyncio.get_event_loop()
     loop.run_until_complete(update_promotions())
 
 
 async def update_promotions() -> None:
+    await producer.init_producer()
+    await producer.start()
     promotions = await parse_promotions()
     promotions["action"] = "rate_update"
-    await producer.start()
-    await send_data(promotions)
+    await producer.send_data(promotions)
     await PromotionRepository.update_one(promotions)

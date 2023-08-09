@@ -9,6 +9,7 @@ app = FastAPI(title=app_settings.APP_TITLE)
 
 @app.on_event("startup")
 async def startup_event() -> None:
+    await producer.init_producer()
     await producer.start()
 
 
